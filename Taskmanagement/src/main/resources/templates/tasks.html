@@ -47,7 +47,7 @@
                     <th>status</th>
                 </tr>
 
-                <tr th:each="task : ${tasks}">
+                <tr th:each="task : ${tasks.content}">
                     <td th:text="${task.id}"></td>
                     <td th:text="${task.title}"></td>
                     <td th:utext="${task.description}"></td>
@@ -62,10 +62,15 @@
                             <input type="submit" value="change">
                         </form>
                     </td>
-
                     <td th:text="${task.status}"></td>
                 </tr>
             </table>
+            <div th:if="${tasks.totalPages > 0}" class="pagination"
+                 th:each="pageNumber : ${pageNumbers}">
+                <a th:href="@{/tasks(size=${tasks.size}, page=${pageNumber})}"
+                   th:text="${pageNumber}"
+                   th:class="${pageNumber==tasks.number + 1} ? active"></a>
+            </div>
         </div>
     </div>
 </main>

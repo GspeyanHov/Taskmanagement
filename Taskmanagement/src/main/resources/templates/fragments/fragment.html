@@ -60,6 +60,9 @@
                             <a href="#" class="nav-link mobilesearch" data-toggle="dropdown" aria-expanded="false"><i class="icon-magnifier h4"></i>
                             </a>
                         </li>
+                        <li>
+                            <a href="?lang=en">English</a> |  <a href="?lang=hy">Հայերեն</a> |  <a href="?lang=ru">Русский</a>
+                    </li>
                         <li class="dropdown user-profile align-self-center d-inline-block">
                             <th:block th:if="${currentUser != null}">
                                 <a href="/" class="nav-link py-0" data-toggle="dropdown" aria-expanded="false">
@@ -96,7 +99,9 @@
 
             <!-- START: Menu-->
             <ul id="side-menu" class="sidebar-menu">
-                <li th:if="${currentUser != null}" class="dropdown"><a href="/#"><i class="icon-home mr-1"></i> TASKS</a>
+                <li th:if="${currentUser != null}" class="dropdown"><a href="/#"><i class="icon-home mr-1"></i>
+                    <span th:text="#{menu.tasks}"></span></a>
+
                     <ul>
                         <li th:class="${currentUri == '/tasks' ? 'active' : '' }" th:if="${currentUser != null}"><a href="/tasks"><i class="icon-rocket"></i> Show all tasks</a></li>
                         <li th:class="${currentUri == '/tasks/add' ? 'active' : '' }" th:if="${currentUser != null && currentUser.getRole.name == 'MANAGER'}"><a href="/tasks/add"><i class="icon-layers"></i> Add new task</a></li>
