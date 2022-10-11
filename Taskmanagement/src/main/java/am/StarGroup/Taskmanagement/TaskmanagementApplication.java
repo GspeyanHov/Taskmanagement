@@ -3,21 +3,22 @@ package am.StarGroup.Taskmanagement;
 import am.StarGroup.Taskmanagement.entity.Role;
 import am.StarGroup.Taskmanagement.entity.User;
 import am.StarGroup.Taskmanagement.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
-
+@EnableAsync
 @SpringBootApplication
+@RequiredArgsConstructor
 public class TaskmanagementApplication implements CommandLineRunner {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(TaskmanagementApplication.class, args);

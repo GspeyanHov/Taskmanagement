@@ -45,9 +45,11 @@ public class UserController {
             modelMap.addAttribute("errorMessageEmail", "User with that email already exists");
             return "addUser";
         }
-        if (file.getContentType() != null && !file.getContentType().contains("image")) {
-            modelMap.addAttribute("errorMessageFile", "please choose file's right format");
-            return "addUser";
+        if (!file.isEmpty() && file.getSize() > 0) {
+            if (file.getContentType() != null && !file.getContentType().contains("image")) {
+                modelMap.addAttribute("errorMessageFile", "please choose file's right format");
+                return "addUser";
+            }
         }
         userService.saveUser(user, file);
         return "redirect:/users";
